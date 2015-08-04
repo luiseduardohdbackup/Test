@@ -64,7 +64,7 @@ namespace SystemX
 			diffLength -= length;
 			diffLength += newText.Length;
 
-			ReplaceableString newReplaceableString = new ReplaceableString ( replaceableString.text, index + replaceableString.parentIndex , newText.Length, replaceableString.substitutions   );//text?
+			ReplaceableString newReplaceableString = new ReplaceableString ( replaceableString.text, index , newText.Length, new List<String>()  );//text?
 
 			List<String> substitutionsInRange = getAllSubstitutions( index, length );
 			//Le quito el index, ya que al tener nuevo padre el index cambia.
@@ -104,7 +104,11 @@ namespace SystemX
 			if( ! previousText.Equals( currentText ) )
 			{
 				currentText = this.ToString();
-				Console.Error.Write( "Error Replace" );
+				Console.Error.WriteLine( "Error Replace" );
+				Console.Error.WriteLine( "previousText :" );
+				Console.Error.WriteLine( previousText );
+				Console.Error.WriteLine( "currentText :" );
+				Console.Error.WriteLine( currentText );
 			}
 		}
 
@@ -136,7 +140,9 @@ namespace SystemX
 					substitutions.Remove(s);
 					if( s is ReplaceableString )
 					{
-						((ReplaceableString)s).parentIndex -= parentIndex;//Para hacer de este el nuevo padre
+						ReplaceableString rs = s as ReplaceableString;
+						rs.parentIndex -= index;//Para hacer de este el nuevo padre
+						//substitutions.Add ( rs );
 					}
 				}
 				substitutions.Add ( new ReplaceableString ( substitutedText, index,newText.Length, substitutionsInRange ) );
@@ -160,6 +166,7 @@ namespace SystemX
 			//text = text;
 			//return this;
 		}
+		//TODO: revisar que hacer cuando un texto se interponga entre substituciones.
 		public List<String> getAllSubstitutions( int index, int length)
 		{
 			List<String> result = new List<String>();
@@ -226,6 +233,7 @@ namespace SystemX
 		public override string ToString()
 		{
 			string result = "";
+			string initText = text;
 
 			result = text;
 
@@ -244,8 +252,23 @@ namespace SystemX
 
 //					index = substitucion.parentIndex + diffLength;
 //					count = substitucion.sustitutionLength;
-					index = Math.Min( substitucion.parentIndex + diffLength, result.Length);
-					count = ( index + substitucion.sustitutionLength <= result.Length) ?   substitucion.sustitutionLength:result.Length-index;
+					if( substitucion.parentIndex + diffLength < result.Length)
+					{
+						index = substitucion.parentIndex + diffLength ;
+					}
+					else
+					{
+						index = Math.Min( substitucion.parentIndex + diffLength, result.Length);
+						//Console.Error.WriteLine( "Error: ! substitucion.parentIndex + diffLength > result.Length" );
+					}
+					if( index + substitucion.sustitutionLength <= result.Length )
+					{
+						count = substitucion.sustitutionLength ;
+					}
+					else{
+						count = result.Length-index;
+						//Console.Error.WriteLine( "Error: ! index + substitucion.sustitutionLength <= result.Length" );
+					}
 //					index = substitucion.parentIndex;
 //					count = substitucion.sustitutionLength;
 

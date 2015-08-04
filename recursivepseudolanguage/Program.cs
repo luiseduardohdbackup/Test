@@ -10,9 +10,49 @@ namespace RecursivePseudoLanguage.Test
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("ReplaceableString.Test");
-			//test4 ();
 			test3 ();
+			//test4 ();
+			//test5();
+			//test6();
 			Console.ReadLine();
+		}
+
+		public static bool test6 ()
+		{
+			string text = "";
+			SystemX.ReplaceableString replaceableString = null;
+			text = @"z(a[b{c}d{e}f]g)h";
+			//text = @"z(a[b _Be_ d{e}f]g)h";
+			//text = @"z(a[b _Be_ d _Be_ f]g)h";
+			//text = @"z(a _Bt_ g)h";
+			//text = @"z _Ps_ h";
+			replaceableString = new SystemX.ReplaceableString( text );
+			replaceableString.Replace( 5, 3, " _Be_ ");
+			replaceableString.Replace( 12, 3, " _Be_ ");
+			replaceableString.Replace( 3, 17, " _Bt_ ");
+			replaceableString.Replace( 1, 10, " _Ps_ ");
+			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
+			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
+
+			//Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			return true;
+		}
+
+		public static bool test5 ()
+		{
+			string text = "";
+			SystemX.ReplaceableString replaceableString = null;
+
+
+			text = @"z(a[b{c}d{e}f]g)h";
+			replaceableString = RecursivePseudoLanguage.Parse ( text );
+			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
+			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
+
+			//Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			return true;
 		}
 
 		public static bool test4 ()
@@ -230,7 +270,10 @@ int main _Parentesis_ _Cuerpo_
 @end
 ";//TODO: revisar los errores, son pocos , pero si hay.
 			replaceableString = RecursivePseudoLanguage.Parse ( text );
+			
+			Console.WriteLine ("text:" + text);
 			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
+			string parsed = replaceableString.ToString();
 			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
 
 			//Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
