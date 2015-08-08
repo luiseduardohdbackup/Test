@@ -227,6 +227,28 @@ namespace SystemX
 		{
 
 		}
+		
+		//Para poder obtener un string reemplazable, con todo y las substituciones
+		public ReplaceableString getReplaceableString(string value,int index, int length)
+		{
+			ReplaceableString result = new ReplaceableString ( value );
+			List<String> substitutionsInRange = getAllSubstitutions( index, length );
+			
+			//Le quito el index, ya que al tener nuevo padre el index cambia.
+			//TODO revisar si hacerlo aqui o en otro lugar
+			foreach( String s in substitutionsInRange )
+			{
+				substitutions.Remove(s);
+				if( s is ReplaceableString )
+				{
+					ReplaceableString rs = s as ReplaceableString;
+					rs.parentIndex -= index;//Para hacer de este el nuevo padre
+					result.substitutions.Add ( rs );
+				}
+			}
+			
+			return result;
+		}
 
 
 

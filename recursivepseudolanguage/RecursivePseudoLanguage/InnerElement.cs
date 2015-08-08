@@ -64,8 +64,10 @@ namespace RecursivePseudoLanguage
 				//replaceableString.Replace( match.Index + diferencia, match.Length,newText);
 
 //				//TODO buscar corchetes y llaves
-				ReplaceableString tempSubstitution = new ReplaceableString (match.Value);
+				ReplaceableString tempSubstitution = new ReplaceableString (match.Value);//TODO:tal vez aqui falta meter las sustituciones anteriores
 
+				//ReplaceableString tempSubstitution = replaceableString.getReplaceableString(match.Value,match.Index,match.Length);
+				
 				if (!(this is Bracket) ) {
 					tempSubstitution = new Bracket ().replace (tempSubstitution);
 				}

@@ -14,18 +14,94 @@ namespace RecursivePseudoLanguage.Test
 			//test4 ();
 			//test5();
 			//test6();
+			//test7();
+			//test8();
 			Console.ReadLine();
+		}
+
+		public static bool test8 ()
+		{
+			string text = "";
+			SystemX.ReplaceableString replaceableString = null;
+			//text = @"[a{b(c){d[e]f(g)h}i{j[k]l(m)n}}]o";//TODO:resolver este y ya esta casi terminado
+			//text = @"[[e]]";//Funciona
+			//text = @"[([e])]";//Ya Funciona
+			//text = @"[{[e]}]";//Ya funciona
+			//text = @"[{[e]}c]";//funciona
+			//text = @"[{[]}[]]";//Ya funciona
+			//text = @"[[c]{[e]}]";//Ya funciona
+			//text = @"[a{b[c]{d[e]}]";//Ya funciona
+			//text = @"[a{b[c]{d[e]f[g]h}i{j[k]l(m)n}}]o"; //Ya funciona !
+			/*text = @"
+- (id)initWithStyle:(Ue)se {
+  sf = [sr ie:se];
+  if (sf != nl) {
+    [sf ss];
+  }
+  rn sf;
+}";// funciona ( curiosamente )
+			 */
+			text = @"
+- (id)initWithStyle:(UITableViewStyle)style {
+  self = [super initWithStyle:style];
+  if (self != nil) {
+    [self setupStrings];
+  }
+  return self;
+}";//No funciona
+
+			//text = @"()(a1234567890123456){b12[c12345678]12(d12345678){e12[f12345]g123}h12}";//No funciona
+			
+			//replaceableString = RecursivePseudoLanguage.Parse ( text );
+			replaceableString = RecursivePseudoLanguage.ParseV2 ( text );
+			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
+			string parsed = replaceableString.ToString();
+			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
+
+			Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			//Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			return true;
+		}
+
+		public static bool test7 ()
+		{
+			string text = "";
+			SystemX.ReplaceableString replaceableString = null;
+			text = @"
+        [UIView animateWithDuration:0.25 animations:^{
+            if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
+                // User is scrolling above the header
+                refreshLabel.text = self.textRelease;
+                [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
+            } else { 
+                // User is scrolling somewhere within the header
+                refreshLabel.text = self.textPull;
+                [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+            }
+        }];";
+			replaceableString = RecursivePseudoLanguage.Parse ( text );
+			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
+			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
+
+			Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			//Debug.Assert(text.Equals( replaceableString.ToString() ), "Error");
+
+			return true;
 		}
 
 		public static bool test6 ()
 		{
 			string text = "";
 			SystemX.ReplaceableString replaceableString = null;
-			text = @"z(a[b{c}d{e}f]g)h";
+			//text = @"z(a[b{c}d{e}f]g)h";
 			//text = @"z(a[b _Be_ d{e}f]g)h";
 			//text = @"z(a[b _Be_ d _Be_ f]g)h";
 			//text = @"z(a _Bt_ g)h";
 			//text = @"z _Ps_ h";
+			text = @"z(a[b{c}d{e}f]g)h";
 			replaceableString = new SystemX.ReplaceableString( text );
 			replaceableString.Replace( 5, 3, " _Be_ ");
 			replaceableString.Replace( 12, 3, " _Be_ ");
@@ -269,7 +345,8 @@ int main _Parentesis_ _Cuerpo_
 
 @end
 ";//TODO: revisar los errores, son pocos , pero si hay.
-			replaceableString = RecursivePseudoLanguage.Parse ( text );
+			//replaceableString = RecursivePseudoLanguage.Parse ( text );
+			replaceableString = RecursivePseudoLanguage.ParseV2 ( text );
 			
 			Console.WriteLine ("text:" + text);
 			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
@@ -639,7 +716,8 @@ int main _Parentesis_ _Cuerpo_
 
 @end
 ";//TODO: revisar los errores, son pocos , pero si hay.
-			replaceableString = RecursivePseudoLanguage.Parse ( text );
+			//replaceableString = RecursivePseudoLanguage.Parse ( text );
+			replaceableString = RecursivePseudoLanguage.ParseV2 ( text );
 			Console.WriteLine ("replaceableString.text:" + replaceableString.text);
 			Console.WriteLine ("replaceableString.ToString():" + replaceableString.ToString());
 
