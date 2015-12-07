@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="ObjectiveC/ObjectiveC.csproj">
+﻿<Properties StartupItem="WindowsFormGUI/WindowsFormGUI.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ObjectiveC/ObjectiveC/Unit.cs">
     <Files>

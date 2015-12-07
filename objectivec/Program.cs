@@ -10,7 +10,8 @@ namespace ObjectiveC
 	{
 		public static void Main (string[] args)
 		{
-			test2 ();
+			test1 ();
+			//test2 ();
 			Console.ReadLine();
 		}
 
@@ -86,11 +87,19 @@ namespace ObjectiveC
 			unit = Unit.parse( replaceableString );
 			Console.WriteLine (unit.ToString());
 
+			//List or ValueList
+			text = "@\"What time is it?\", nil";
+			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.Parse ( text );
+			unit = Unit.parse( replaceableString );
+			Console.WriteLine (unit.ToString());
+
+			//MethodCallBody
 			text = "[NSMutableArray alloc] initWithObjects:@\"What time is it?\", nil";
 			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.Parse ( text );
 			unit = Unit.parse( replaceableString );
 			Console.WriteLine (unit.ToString());
 
+			//MethodCall
 			text = "[[NSMutableArray alloc] initWithObjects:@\"What time is it?\", nil]";
 			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.Parse ( text );
 			unit = Unit.parse( replaceableString );
@@ -341,11 +350,22 @@ namespace ObjectiveC
 			unit = Unit.parse( replaceableString );
 			Console.WriteLine (unit.ToString());
 
-			text = "UINavigationController *navigationController;";
+		}
+
+
+		public static void test3()
+		{
+			Console.WriteLine ("test2");
+			string text = "";
+			SystemX.ReplaceableString replaceableString = null;
+			Unit unit = null;
+
+
+			text = "[self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];";
 			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.Parse ( text );
 			unit = Unit.parse( replaceableString );
 			Console.WriteLine (unit.ToString());
-
+			
 		}
 
 		public static void test1()

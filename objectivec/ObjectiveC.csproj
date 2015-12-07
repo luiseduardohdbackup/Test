@@ -97,6 +97,6 @@
     <Folder Include="Preprocessor\" />
     <Folder Include="ObjectiveC\" />
     <Folder Include="ReflectiveEnumerator\" />
-    <Folder Include="OptionType\" />
+    <Folder Include="..\objectivec\OptionType\" />
   </ItemGroup>
 </Project>
