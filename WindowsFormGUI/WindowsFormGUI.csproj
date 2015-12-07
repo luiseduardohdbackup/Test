@@ -29,6 +29,7 @@
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+  <Import Project="..\CSharp\CSharp.projitems" Label="Shared" Condition="Exists('..\CSharp\CSharp.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
@@ -38,5 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs" />
+    <Compile Include="UnbabelCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectiveC\ObjectiveC.csproj">
+      <Project>{95A1ED30-CAF7-40B4-98AE-6AAD62AD1E59}</Project>
+      <Name>ObjectiveC</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

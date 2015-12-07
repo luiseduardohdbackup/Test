@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace MyFormProject 
+namespace WindowsFormGUI 
 {
 	class MainForm : System.Windows.Forms.Form
 	{
@@ -33,7 +33,7 @@ namespace MyFormProject
 			this.button.Size = new System.Drawing.Size(496, 24);
 			this.button.TabIndex = 0;
 			this.button.Text = "Convertir";
-			this.button.Click += Click;
+			this.button.Click += buttonClick;
 			// 
 			// textBox
 			// 
@@ -70,15 +70,19 @@ namespace MyFormProject
 			Application.Run(new MainForm());
 		}
 
-		private void Click(object sender, EventArgs e) {
+		private void buttonClick(object sender, EventArgs e) {
 			//Console.WriteLine("Got doubleclick");
+			var input = this.inputCode.Text;
+			var output = UnbabelCode.ObjectiveCToCSharp (input);
+			this.outputCode.Text = output;
 
 			const string message =
-				"Are you sure that you would like to close the form?";
-			const string caption = "Form Closing";
-			var result = MessageBox.Show(message, caption,
-				MessageBoxButtons.YesNo,
+				"Convertion Done";
+			const string caption = "ObjC2CSharp";
+			MessageBox.Show(message, caption,
+				MessageBoxButtons.OK,
 				MessageBoxIcon.Question);
+			
 		}
-	}			
+	}
 }

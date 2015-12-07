@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unbabeler", "Unbabeler\Unba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormGUI", "WindowsFormGUI\WindowsFormGUI.csproj", "{5A6320D0-C1A4-4F47-A195-0293550413C9}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CSharp", "CSharp\CSharp.shproj", "{A3E223F6-2336-4AD9-B790-68687E691BCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
