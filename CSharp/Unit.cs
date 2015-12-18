@@ -2,7 +2,7 @@
 
 namespace CSharp
 {
-	public class Unit
+	public class Unit : BaseLanguage.Unit
 	{
 		public Unit ()
 		{
