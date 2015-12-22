@@ -2,6 +2,7 @@
 
 namespace SystemX
 {
+	//I dont like sealed classes
 	public class String
 	{
 		public String ( )

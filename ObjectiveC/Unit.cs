@@ -38,7 +38,7 @@ namespace ObjectiveC
 		public new static Unit parse(string text)
 		{
 			SystemX.ReplaceableString replaceableString = null;
-			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.Parse (text);
+			replaceableString = RecursivePseudoLanguage.RecursivePseudoLanguage.ToReplaceableString (text);
 			return parse (replaceableString);
 		}
 

@@ -40,6 +40,7 @@
     <Compile Include="Parenthesis.cs" />
     <Compile Include="Protocol.cs" />
     <Compile Include="RecursivePseudoLanguage.cs" />
+    <Compile Include="RecursivePseudoLanguageElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

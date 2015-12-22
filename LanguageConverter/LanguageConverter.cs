@@ -1,4 +1,5 @@
 ﻿using System;
+using ObjectiveC;
 
 namespace LanguageConverter
 {
@@ -9,12 +10,27 @@ namespace LanguageConverter
 		{
 			string result = "";
 			//ObjectiveC.Unit objectiveCUnit = ObjectiveC.Unit.parse2 (inputCode);
-			ObjectiveC.IEvaluableExpression ObjectiveCEvaluableExpression = ObjectiveC.EvaluableExpression.parse (inputCode);
+			//ObjectiveC.IEvaluableExpression ObjectiveCEvaluableExpression = ObjectiveC.EvaluableExpression.parse (inputCode);
+			RecursivePseudoLanguage.RecursivePseudoLanguage recursivePseudoLanguage = null;
+			recursivePseudoLanguage =RecursivePseudoLanguage.RecursivePseudoLanguage.Parse ( inputCode );
+			//ObjectiveC.IEvaluableExpression ObjectiveCEvaluableExpression = ObjectiveC.EvaluableExpression.parse (inputCode);
+			ObjectiveC.IEvaluableExpression ObjectiveCEvaluableExpression = RecursivePseudoLanguageToObjectiveC (recursivePseudoLanguage);
 
 			//CSharp.Unit cSharpUnit = ObjectiveCToCSharp (EvaluableExpression);
 			CSharp.IEvaluableExpression CSharpEvaluableExpression = ObjectiveCToCSharp (ObjectiveCEvaluableExpression);
 
 			result = CSharpEvaluableExpression.ToString ();
+			return result;
+		}
+
+		public static ObjectiveC.IEvaluableExpression RecursivePseudoLanguageToObjectiveC(RecursivePseudoLanguage.RecursivePseudoLanguage RecursivePseudoLanguage)
+		{
+			ObjectiveC.IEvaluableExpression result = null;
+
+			if (RecursivePseudoLanguage.elements.Count == 1 && RecursivePseudoLanguage.elements[0].getValue() is string ) {
+				result = EvaluableExpression.parse ((string)RecursivePseudoLanguage.elements[0].getValue());
+			}
+
 			return result;
 		}
 

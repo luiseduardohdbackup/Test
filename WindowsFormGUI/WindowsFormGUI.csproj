@@ -57,5 +57,9 @@
       <Project>{FF6FDB80-CC4D-4C13-845C-0F2CC495F7A6}</Project>
       <Name>RecursivePseudoLanguage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ObjectiveC\ObjectiveC.csproj">
+      <Project>{536CA0C1-21BE-48BD-9961-A15338DCF62B}</Project>
+      <Name>ObjectiveC</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

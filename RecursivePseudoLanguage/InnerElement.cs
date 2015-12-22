@@ -8,12 +8,23 @@ namespace RecursivePseudoLanguage
 {
 	public class InnerElement:Element
 	{
+
 		protected string innerPattern = "";
 		public string InnerPattern{
 			get {
 				return innerPattern;
 			}
 		}
+
+		public string InnerText { get; set;}
+		//TODO:hacer el cambio de innerText a elements
+		public List <RecursivePseudoLanguageElement> elements;
+
+
+		public string StartString { get; set;}
+		public string EndString { get; set;}
+
+		public string CatchPattern { get; set;}
 
 		public  ReplaceableString replace( ReplaceableString substitution )
 		{
@@ -123,7 +134,14 @@ namespace RecursivePseudoLanguage
 
 		public override string ToString()
 		{
-			return innerPattern;
+			//return innerPattern;
+			var text = "";
+
+			foreach (RecursivePseudoLanguageElement r in elements) {
+				text += r.ToString ();
+			}
+
+			return StartString+text+EndString;
 		}
 	}
 }
